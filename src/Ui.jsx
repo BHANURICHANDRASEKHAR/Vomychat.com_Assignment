@@ -1,8 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import  io  from 'socket.io-client';
 import { On_Error,On_Success } from './helper';
-const socket = io('https://backend-6wmne0ffa-chandus-projects-6613bcee.vercel.app');
-
+const socket = io('https://voymbackend.onrender.com', {
+  withCredentials: true,
+ 
+ 
+});// http://localhost:5173,https://backend-6wmne0ffa-chandus-projects-6613bcee.vercel.app,https://voymbackend.onrender.com,
+socket.on('connect', () => {
+  console.log('Connected to server:', socket.id);
+});
 export default function Ui({posts, setPosts,loader,setloader}) {
     const [subreddit, setSubreddit] = useState('');
     const [keyword, setKeyword] = useState('');
