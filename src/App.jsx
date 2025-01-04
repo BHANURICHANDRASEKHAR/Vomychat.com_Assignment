@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import React, { useEffect,useState } from 'react'
+import Exampledata from './data.js'
+import Ui from './Ui';
+import Loader from './Loader.jsx';
+import Data from './data.jsx'
+import Aos from 'aos';
+import {Toaster} from 'react-hot-toast'
+export default function App() {
+    const [posts, setPosts] = useState([]);
+    const [loader,setloader]=useState(false)
+   useEffect(()=>{
+   Aos.init();
+   },[])
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <React.Fragment>
+    <Ui posts={posts} setPosts={setPosts} loader={loader} setloader={setloader} />
+    <div className='container'>
+    <div className='row mt-3'>
+    {
+      loader &&<Loader/>
+      }
+    {
+      posts.length>0 && posts.map((post,index)=>{
+        return (
+          <Data post={post.data} key={index} />
+        )
+      })
+    }
+    
+    </div>
+    <Toaster position='top-center'/>  
+    </div>
+    </React.Fragment>
   )
 }
-
-export default App
