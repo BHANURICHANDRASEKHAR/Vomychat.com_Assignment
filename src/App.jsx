@@ -1,8 +1,7 @@
 import React, { useEffect,useState } from 'react'
-import Exampledata from './data.js'
 import Ui from './Ui';
 import Loader from './Loader.jsx';
-import Data from './data.jsx'
+import Data from './data.jsx';
 import Aos from 'aos';
 import {Toaster} from 'react-hot-toast'
 export default function App() {

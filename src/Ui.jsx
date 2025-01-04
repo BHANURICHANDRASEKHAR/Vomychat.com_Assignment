@@ -1,57 +1,53 @@
 import React,{useState,useEffect} from 'react'
 import  io  from 'socket.io-client';
 import { On_Error,On_Success } from './helper';
-const socket = io('https://voymbackend.onrender.com', {
-  withCredentials: true,
- 
- 
-});// http://localhost:5173,https://backend-6wmne0ffa-chandus-projects-6613bcee.vercel.app,https://voymbackend.onrender.com,
-socket.on('connect', () => {
-  console.log('Connected to server:', socket.id);
-});
+import {FetchData} from './data'
+import SubDirects from './Subdirects'
+
 export default function Ui({posts, setPosts,loader,setloader}) {
-    const [subreddit, setSubreddit] = useState('');
+    const [subreddit, setSubreddit] = useState([]);
     const [keyword, setKeyword] = useState('');
-  useEffect(() => {
-    const handlePosts = (data) => {
-      if (data.length > 0) {
-        setPosts(data);
-        setloader(false);
-        On_Success('Posts fetched successfully');
-      } else {
-        setloader(false);
-        On_Error('No posts found');
-      }
-    };
+  // useEffect(() => {
+  //   const handlePosts = (data) => {
+  //     if (data.length > 0) {
+  //       setPosts(data);
+  //       setloader(false);
+  //       On_Success('Posts fetched successfully');
+  //     } else {
+  //       setloader(false);
+  //       On_Error('No posts found');
+  //     }
+  //   };
 
-    const handleError = (data) => {
-      console.error('Error received from server:', data);
-      setloader(false);
-      On_Error(data);
-    };
+  //   const handleError = (data) => {
+  //     console.error('Error received from server:', data);
+  //     setloader(false);
+  //     On_Error(data);
+  //   };
 
-    socket.on('posts', handlePosts);
-    socket.on('error', handleError);
+  //   socket.on('posts', handlePosts);
+  //   socket.on('error', handleError);
 
-    return () => {
-      socket.off('posts', handlePosts);
-      socket.off('error', handleError);
-    };
-  }, []);
+  //   return () => {
+  //     socket.off('posts', handlePosts);
+  //     socket.off('error', handleError);
+  //   };
+  // }, []);
 
   const fetchPosts = () => {
-    if (subreddit.trim().length > 0) {
-      setloader(true);
-      socket.emit('fetchPosts', { subreddit, keyword });
+    if (subreddit.length > 0) {
+      FetchData(setloader,setPosts,subreddit,keyword)
     } else {
       On_Error('Please enter a subreddit');
     }
   };
+  console.log(subreddit)
   return (
     <div className='container mt-3'>
       <div className='row'>
       <div className='col-sm-5'>
-      <Input value={subreddit} onchange={setSubreddit} placeholder='Subreddit' label='Enter Subreddit' />
+      <label>Select Sub Directs</label>
+      <SubDirects setSelectedValue={setSubreddit} selectedValue={subreddit}/>
       </div>
       <div className='col-sm-5'>
       <Input value={keyword} onchange={setKeyword} placeholder='keyword' label='Enter Keyword' />
