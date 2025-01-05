@@ -1,0 +1,33 @@
+.img-con img{
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.webname {
+    position: relative;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 3px;
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    padding-bottom: 10px; /* Add space between text and pseudo-element */
+}
+
+.webname::before {
+    content: "";
+    position: absolute; 
+    bottom: 0;
+    left: 0; 
+    width: 60px; 
+    height: 4px;
+    background-color: red;
+    transform: scaleX(2); 
+    transform-origin: left; 
+    transition: transform 0.5s ease; 
+}
+
+.webname:hover::before {
+    transform: scaleX(0); 
+}
+

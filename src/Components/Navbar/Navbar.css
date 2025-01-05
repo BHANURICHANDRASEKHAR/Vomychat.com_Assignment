@@ -1,0 +1,98 @@
+.navbar-container {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  letter-spacing: 1px; 
+  background: rgb(255, 241, 241) !important;
+}
+
+.navbar-brand {
+  color: black;
+}
+
+.navitem {
+  font-weight: 400;
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+  margin: 0 1rem; 
+  white-space: nowrap;
+}
+
+.navitem:hover {
+  color: orange !important;
+  font-weight: bold;
+}
+
+.navitem.active1 {
+  font-weight: 900;
+  color: #0e8cf9 !important;
+}
+
+.logo {
+  height: 3rem;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+  .desktop-nav {
+    display: none;
+  }
+}
+
+.menu-icon {
+  display: inline-block;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+}
+
+.navbar-collapse {
+  justify-content: flex-end; 
+  letter-spacing: 1px; 
+}
+
+.navitem{
+  position: relative;
+}
+.navitem:hover {
+  color: orange !important;
+  font-weight: bold;
+}
+
+.navitem.active1 {
+  font-weight: 900;
+  color: #0e8cf9;
+}
+
+.navitem::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -10px;
+  background-color: orange;
+  height: 3px;
+  transform-origin: left;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: transform 0.8s ease-in-out;
+}
+
+.navitem:hover::after {
+  transform: scaleX(1);
+}
+
+.navbar-item{
+  background-color: #0e8cf9;
+}
+.navbar1{
+  background-color: #111827 !important;
+  color: white;
+  padding: 10px;
+}
+.active{
+  color: orange !important;
+  font-weight: bold;
+
+}

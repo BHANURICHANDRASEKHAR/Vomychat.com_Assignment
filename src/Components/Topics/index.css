@@ -1,0 +1,10 @@
+.alert1{
+    background-color: rgb(85, 87, 134);
+    border-radius: 10px !important;
+    height: 50px;
+    border: none !important;
+    cursor: pointer;
+}
+.alert1:hover{
+    background-color: #384664 !important;
+}
